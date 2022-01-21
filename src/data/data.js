@@ -86,6 +86,7 @@ export const skills = [
       "SVN",
       "Git",
       "GitLab CI",
+      "TDD",
     ],
   },
 ];

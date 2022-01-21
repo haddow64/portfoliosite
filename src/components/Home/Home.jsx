@@ -49,7 +49,12 @@ const Home = () => {
         >
           See my Skills
         </Link>
-        <a href="https://github.com/haddow64/CV/blob/main/text.txt" target="_blank" rel="noopener noreferrer" className="home-btn">Get my CV</a>
+        <a 
+         href="https://github.com/haddow64/CV/raw/main/Graeme_Haddow_-_Senior_Software_Engineer.pdf"
+         target="_blank" rel="noopener noreferrer"
+         className="home-btn">
+           Get my CV
+        </a>
       </motion.div>
 
       <motion.div

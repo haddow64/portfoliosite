@@ -1,0 +1,10 @@
+.grid-flow {
+  display: grid;
+  grid-auto-flow: row;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.grid-item {
+  margin: 10px;
+  color: black;
+}

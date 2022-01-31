@@ -74,7 +74,7 @@ export const skills = [
     ],
   },
   {
-    title: "Others (Covering multiple stacks)",
+    title: "Others",
     iconSrc: "https://cdn.iconscout.com/icon/premium/png-256-thumb/software-development-27-993769.png",
     tags: [
       "Microservices",

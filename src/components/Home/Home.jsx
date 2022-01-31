@@ -26,7 +26,6 @@ const contentVariants = {
   },
 };
 
-
 const Home = () => {
   return (
     <section className="home-container" id="home" name="home">

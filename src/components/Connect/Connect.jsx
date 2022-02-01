@@ -12,7 +12,7 @@ import { faEnvelope } from "@fortawesome/free-regular-svg-icons";
 
 const Connect = () => {
   return (
-    <section name="connect" id="connect">
+    <section name="connect" id="connect" style={{ marginBottom: "5rem" }} >
       <Heading text="Connect" style={{ marginBottom: "1rem" }} />
         <div className="grid-flow">
           <a href="https://github.com/haddow64" target="_blank" rel="noopener noreferrer" name="GitHub">

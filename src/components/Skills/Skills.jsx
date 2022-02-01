@@ -18,7 +18,7 @@ const Skills = () => {
       name="skills"
       id="skills"
     >
-      <Heading text="Skills" />
+      <Heading text="Skills" style={{ marginBottom: "1rem" }} />
       <div className="skills-cards">
         {skills?.map(({ title, iconSrc, tags }, index) => (
           <SkillsCard key={index} image={iconSrc} title={title} tags={tags} />

@@ -24,8 +24,8 @@ export const skills = [
       "NUnit",
       "XUnit",
       "Mockito",
-      "Jenkins",
-      "Visual Studio"
+      "Visual Studio",
+      "Azure",
     ],
   },
   {
@@ -86,6 +86,7 @@ export const skills = [
       "SVN",
       "Git",
       "GitLab CI",
+      "Jenkins",
       "TDD",
     ],
   },

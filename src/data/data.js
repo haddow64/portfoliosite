@@ -9,7 +9,7 @@ export const skills = [
       ".NET Core",
       ".NET Standard",
       "ASP.NET",
-      "APS.NET MVC",
+      "ASP.NET MVC",
       "Model-View-Controller",
       "Web API",
       "Razor",

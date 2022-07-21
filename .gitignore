@@ -11,6 +11,9 @@
 # production
 /build
 
+# npm build
+/portfoliosite
+
 # misc
 .cache
 .DS_Store

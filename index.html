@@ -17,6 +17,29 @@
     <meta property="og:url" content="https://haddow64.com/" />
     <link rel="canonical" href="https://haddow64.com/" />
     <link rel="icon" type="image/webp" href="%BASE_URL%profile-256.webp" />
+    <script>
+      (() => {
+        const storageKey = "portfolio-theme";
+        const lightTheme = "light";
+        const darkTheme = "dark";
+        let savedTheme;
+
+        try {
+          savedTheme = window.localStorage.getItem(storageKey);
+        } catch {
+          savedTheme = null;
+        }
+
+        const theme =
+          savedTheme === lightTheme || savedTheme === darkTheme
+            ? savedTheme
+            : window.matchMedia("(prefers-color-scheme: dark)").matches
+              ? darkTheme
+              : lightTheme;
+
+        document.documentElement.dataset.theme = theme;
+      })();
+    </script>
     <title>Graeme Haddow | Lead Software Engineer</title>
   </head>
   <body>

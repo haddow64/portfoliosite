@@ -6,6 +6,7 @@ import {
   faSun,
   faXmark,
 } from "@fortawesome/free-solid-svg-icons";
+import { Theme } from "../../constants/theme";
 import "./nav.css";
 
 const navItems = [
@@ -58,11 +59,11 @@ const Nav = ({ theme, onToggleTheme }) => {
             className="icon-button"
             type="button"
             onClick={onToggleTheme}
-            aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} mode`}
-            title={`Switch to ${theme === "dark" ? "light" : "dark"} mode`}
+            aria-label={`Switch to ${theme === Theme.DARK ? Theme.LIGHT : Theme.DARK} mode`}
+            title={`Switch to ${theme === Theme.DARK ? Theme.LIGHT : Theme.DARK} mode`}
           >
             <FontAwesomeIcon
-              icon={theme === "dark" ? faSun : faMoon}
+              icon={theme === Theme.DARK ? faSun : faMoon}
               aria-hidden="true"
             />
           </button>

@@ -20,6 +20,7 @@ The Vite development server runs the site under the `/portfoliosite/` base path.
 ```powershell
 npm run lint
 npm test
+npm run typecheck
 npm run build
 npm run preview
 npm run test:integration

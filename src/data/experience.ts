@@ -1,3 +1,5 @@
+import type { ExperienceRole } from "@/types/portfolio";
+
 export const experience = [
   {
     title: "Lead Software Engineer",
@@ -28,4 +30,4 @@ export const experience = [
       "Maintained legacy systems while introducing test-driven development to reduce regression risk.",
     ],
   },
-];
+] as const satisfies readonly ExperienceRole[];

@@ -1,3 +1,5 @@
+import type { SkillCategory } from "@/types/portfolio";
+
 export const skills = [
   {
     title: "Backend Engineering",
@@ -106,4 +108,4 @@ export const skills = [
       "Executive-Level Technical Communication",
     ],
   },
-];
+] as const satisfies readonly SkillCategory[];

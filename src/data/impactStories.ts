@@ -1,3 +1,5 @@
+import type { ImpactStory } from "@/types/portfolio";
+
 export const impactStories = [
   {
     kicker: "Personalisation platform",
@@ -29,4 +31,4 @@ export const impactStories = [
     description:
       "Led development of an AI research platform used to gather consumer feedback for product development, including prompt design and secure API integration.",
   },
-];
+] as const satisfies readonly ImpactStory[];

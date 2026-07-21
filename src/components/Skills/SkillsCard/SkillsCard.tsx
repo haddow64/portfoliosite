@@ -6,9 +6,11 @@ import {
   faServer,
 } from "@fortawesome/free-solid-svg-icons";
 import { faAws } from "@fortawesome/free-brands-svg-icons";
+import type { IconDefinition } from "@fortawesome/fontawesome-svg-core";
+import type { SkillIconName } from "@/types/portfolio";
 import "./skills-card.css";
 
-const icons = {
+const icons: Record<SkillIconName, IconDefinition> = {
   cloud: faAws,
   code: faCode,
   database: faDatabase,
@@ -16,12 +18,18 @@ const icons = {
   server: faServer,
 };
 
-export const SkillsCard = ({ icon, tags, title }) => {
+interface SkillsCardProps {
+  readonly icon: SkillIconName;
+  readonly tags: readonly string[];
+  readonly title: string;
+}
+
+export const SkillsCard = ({ icon, tags, title }: SkillsCardProps) => {
   return (
     <article className="skills-card">
       <div className="skill-card-heading">
         <FontAwesomeIcon
-          icon={icons[icon] ?? faCode}
+          icon={icons[icon]}
           className="skill-icon"
           aria-hidden="true"
         />

@@ -3,15 +3,24 @@ import { Theme, THEME_STORAGE_KEY } from "@/constants/theme";
 import { useTheme } from "@/hooks/useTheme";
 
 describe("useTheme", () => {
+  const mockMatchMedia = (matches = false) =>
+    vi.fn().mockImplementation(
+      (query: string): MediaQueryList => ({
+        matches,
+        media: query,
+        onchange: null,
+        addListener: vi.fn(),
+        removeListener: vi.fn(),
+        addEventListener: vi.fn(),
+        removeEventListener: vi.fn(),
+        dispatchEvent: vi.fn(),
+      })
+    );
+
   beforeEach(() => {
     window.localStorage.clear();
     delete document.documentElement.dataset.theme;
-    window.matchMedia = vi.fn().mockImplementation((query) => ({
-      matches: false,
-      media: query,
-      addEventListener: vi.fn(),
-      removeEventListener: vi.fn(),
-    }));
+    window.matchMedia = mockMatchMedia();
   });
 
   it("uses a saved theme", () => {
@@ -24,12 +33,7 @@ describe("useTheme", () => {
   });
 
   it("falls back to the system preference", () => {
-    window.matchMedia = vi.fn().mockImplementation((query) => ({
-      matches: true,
-      media: query,
-      addEventListener: vi.fn(),
-      removeEventListener: vi.fn(),
-    }));
+    window.matchMedia = mockMatchMedia(true);
 
     const { result } = renderHook(() => useTheme());
 

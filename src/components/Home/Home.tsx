@@ -1,11 +1,12 @@
 import { motion, useReducedMotion } from "framer-motion";
+import type { Variants } from "framer-motion";
 import { cvUrl } from "@data/links";
 import "./home.css";
 
 const profileImage = `${import.meta.env.BASE_URL}profile-400.webp`;
 const smallProfileImage = `${import.meta.env.BASE_URL}profile-256.webp`;
 
-const contentVariants = {
+const contentVariants: Variants = {
   initial: {
     translateX: "-100vw",
     opacity: 0,

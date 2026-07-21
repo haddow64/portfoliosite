@@ -8,9 +8,15 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { navigationItems } from "@data/navigation";
 import { Theme } from "@/constants/theme";
+import type { ThemeValue } from "@/constants/theme";
 import "./nav.css";
 
-const Nav = ({ theme, onToggleTheme }) => {
+interface NavProps {
+  readonly theme: ThemeValue;
+  readonly onToggleTheme: () => void;
+}
+
+const Nav = ({ theme, onToggleTheme }: NavProps) => {
   const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
@@ -18,7 +24,7 @@ const Nav = ({ theme, onToggleTheme }) => {
       return undefined;
     }
 
-    const closeOnEscape = (event) => {
+    const closeOnEscape = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
         setMenuOpen(false);
       }

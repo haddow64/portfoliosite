@@ -5,6 +5,7 @@ import {
   Theme,
   THEME_STORAGE_KEY,
 } from "@/constants/theme";
+import type { ThemeValue } from "@/constants/theme";
 
 const getSavedTheme = () => {
   try {
@@ -32,7 +33,7 @@ const getInitialTheme = () => {
 };
 
 export const useTheme = () => {
-  const [theme, setTheme] = useState(getInitialTheme);
+  const [theme, setTheme] = useState<ThemeValue>(getInitialTheme);
 
   useEffect(() => {
     document.documentElement.dataset.theme = theme;

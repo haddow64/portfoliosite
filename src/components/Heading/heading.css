@@ -11,6 +11,8 @@
   font-weight: 900;
   font-size: 2rem;
   margin-bottom: 0.25rem;
+  max-width: 100%;
+  overflow-wrap: anywhere;
   text-align: center;
 }
 

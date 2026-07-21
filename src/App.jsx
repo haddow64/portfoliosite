@@ -36,7 +36,7 @@ function App() {
         Skip to main content
       </a>
       <Nav theme={theme} onToggleTheme={toggleTheme} />
-      <main id="main-content">
+      <main id="main-content" tabIndex="-1">
         <Home />
         <About />
         <Skills />

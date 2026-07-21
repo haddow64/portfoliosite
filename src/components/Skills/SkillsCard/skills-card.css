@@ -52,4 +52,6 @@
   margin: 0 0.35rem 0.35rem 0;
   background-color: color-mix(in srgb, var(--primary-color) 14%, transparent);
   font-weight: 700;
+  max-width: 100%;
+  overflow-wrap: anywhere;
 }

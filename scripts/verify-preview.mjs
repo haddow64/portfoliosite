@@ -119,6 +119,17 @@ try {
       (await page.getByRole("link", { name: /skip to main content/i }).count()) === 1,
       `${viewport.name}: skip link is missing`
     );
+    await page.keyboard.press("Tab");
+    assert(
+      (await page.evaluate(() => document.activeElement?.textContent?.trim())) ===
+        "Skip to main content",
+      `${viewport.name}: skip link is not the first keyboard target`
+    );
+    await page.keyboard.press("Enter");
+    assert(
+      (await page.evaluate(() => document.activeElement?.id)) === "main-content",
+      `${viewport.name}: skip link does not move focus to main content`
+    );
     assert(
       (await page.locator("main").count()) === 1,
       `${viewport.name}: page does not have exactly one main landmark`
@@ -201,6 +212,18 @@ try {
       await assertCenteredRows(page, ".impact-grid", ".impact-card", viewport.name);
       await assertCenteredRows(page, ".timeline", ".timeline-item", viewport.name);
       await assertTimelineBulletsBelowHeadings(page, viewport.name);
+
+      await page.locator('.nav-links a[href="#experience"]').click();
+      await page.waitForTimeout(1800);
+      const experiencePosition = await page.evaluate(() => ({
+        navBottom: document.querySelector(".nav-wrapper")?.getBoundingClientRect().bottom,
+        targetTop: document.getElementById("experience")?.getBoundingClientRect().top,
+      }));
+      assert(
+        experiencePosition.targetTop >= experiencePosition.navBottom - 2 &&
+          experiencePosition.targetTop < 140,
+        `desktop: Experience navigation offset is incorrect (${JSON.stringify(experiencePosition)})`
+      );
     } else {
       const menuButton = page.getByRole("button", { name: /open navigation/i });
       assert(
@@ -237,6 +260,18 @@ try {
       assert(
         contactButtons.every((button) => button.width >= 44 && button.height >= 44),
         "mobile: contact buttons are smaller than the minimum touch target"
+      );
+
+      await page.addStyleTag({ content: "html { font-size: 200% !important; }" });
+      const enlargedTextLayout = await page.evaluate(() => ({
+        bodyWidth: document.body.scrollWidth,
+        rootWidth: document.documentElement.scrollWidth,
+        viewportWidth: document.documentElement.clientWidth,
+      }));
+      assert(
+        enlargedTextLayout.bodyWidth <= enlargedTextLayout.viewportWidth + 1 &&
+          enlargedTextLayout.rootWidth <= enlargedTextLayout.viewportWidth + 1,
+        `mobile: 200% text causes horizontal overflow (${JSON.stringify(enlargedTextLayout)})`
       );
     }
 

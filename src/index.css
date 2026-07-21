@@ -97,7 +97,6 @@ a:focus-visible {
 .section {
   width: min(1120px, calc(100% - 2rem));
   padding: 5rem 0;
-  scroll-margin-top: 92px;
 }
 
 .about-section .heading-container,
@@ -137,6 +136,8 @@ a:focus-visible {
   background: var(--panel-color);
   border: 1px solid var(--border-color);
   box-shadow: 0 12px 32px var(--shadow-color);
+  min-width: 0;
+  overflow-wrap: anywhere;
 }
 
 .section-panel {

@@ -1,5 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+import { navigationItems } from "data/navigation";
 import App from "./App";
 
 describe("App", () => {
@@ -47,6 +48,12 @@ describe("App", () => {
       "fetchpriority",
       "high"
     );
+    for (const { label, href } of navigationItems) {
+      expect(screen.getByRole("link", { name: label, exact: true })).toHaveAttribute(
+        "href",
+        href
+      );
+    }
   });
 
   it("persists the selected colour theme", async () => {

@@ -5,6 +5,7 @@ import App from "./App";
 describe("App", () => {
   beforeEach(() => {
     window.localStorage.clear();
+    delete document.documentElement.dataset.theme;
     window.matchMedia = vi.fn().mockImplementation((query) => ({
       matches: false,
       media: query,

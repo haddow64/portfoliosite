@@ -281,6 +281,21 @@ try {
     );
     await page.close();
   }
+
+  const bootstrapPage = await browser.newPage({
+    viewport: { width: 390, height: 900 },
+    colorScheme: "light",
+  });
+  await bootstrapPage.addInitScript(() => {
+    window.localStorage.setItem("portfolio-theme", "dark");
+  });
+  await bootstrapPage.route("**/assets/*.js", (route) => route.abort());
+  await bootstrapPage.goto(baseUrl, { waitUntil: "domcontentloaded" });
+  assert(
+    (await bootstrapPage.locator("html").getAttribute("data-theme")) === "dark",
+    "theme bootstrap does not apply the saved theme before React loads"
+  );
+  await bootstrapPage.close();
 } finally {
   await browser.close();
 }

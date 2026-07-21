@@ -1,5 +1,5 @@
-import { Heading } from "components/Heading/Heading";
-import { education } from "data/education";
+import { Heading } from "@components/Heading/Heading";
+import { education } from "@data/education";
 
 const Education = () => {
   return (

@@ -6,10 +6,22 @@ export default defineConfig({
   base: "/portfoliosite/",
   plugins: [react()],
   resolve: {
-    alias: {
-      components: fileURLToPath(new URL("./src/components", import.meta.url)),
-      data: fileURLToPath(new URL("./src/data", import.meta.url)),
-    },
+    alias: [
+      {
+        find: "@components",
+        replacement: fileURLToPath(
+          new URL("./src/components", import.meta.url)
+        ),
+      },
+      {
+        find: "@data",
+        replacement: fileURLToPath(new URL("./src/data", import.meta.url)),
+      },
+      {
+        find: "@",
+        replacement: fileURLToPath(new URL("./src", import.meta.url)),
+      },
+    ],
   },
   test: {
     environment: "jsdom",

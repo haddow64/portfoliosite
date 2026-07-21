@@ -1,6 +1,6 @@
-import { skills } from "data/skills";
-import { SkillsCard } from "components/Skills/SkillsCard/SkillsCard";
-import { Heading } from "components/Heading/Heading";
+import { skills } from "@data/skills";
+import { SkillsCard } from "@components/Skills/SkillsCard/SkillsCard";
+import { Heading } from "@components/Heading/Heading";
 import "./skills.css";
 
 const Skills = () => {

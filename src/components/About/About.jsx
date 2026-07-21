@@ -1,4 +1,4 @@
-import { Heading } from "components/Heading/Heading";
+import { Heading } from "@components/Heading/Heading";
 
 const About = () => {
   return (

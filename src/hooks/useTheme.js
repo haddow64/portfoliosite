@@ -4,7 +4,7 @@ import {
   isTheme,
   Theme,
   THEME_STORAGE_KEY,
-} from "../constants/theme";
+} from "@/constants/theme";
 
 const getSavedTheme = () => {
   try {

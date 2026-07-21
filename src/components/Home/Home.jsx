@@ -1,14 +1,9 @@
-import React from "react";
-
-// PNG
-import man from "images/me.png";
-
-// Animation
-import { Link } from "react-scroll";
-import { motion } from "framer-motion";
-
-// CSS
+import { motion, useReducedMotion } from "framer-motion";
+import { cvUrl } from "data/links";
 import "./home.css";
+
+const profileImage = `${import.meta.env.BASE_URL}profile-400.webp`;
+const smallProfileImage = `${import.meta.env.BASE_URL}profile-256.webp`;
 
 const contentVariants = {
   initial: {
@@ -27,41 +22,52 @@ const contentVariants = {
 };
 
 const Home = () => {
+  const reduceMotion = useReducedMotion();
+
   return (
-    <section className="home-container" id="home" name="home">
+    <section className="home-container" id="home">
       <motion.div
         className="content"
         variants={contentVariants}
-        initial="initial"
+        initial={reduceMotion ? false : "initial"}
         animate="animate"
       >
-        <p>Hi, I'm Graeme. A Full stack developer.</p>
-        <Link
-          className="home-btn"
-          to={"skills"}
-          hashSpy={true}
-          spy={true}
-          smooth={true}
-          delay={100}
-          offset={-100}
-          duration={500}
-        >
-          See my Skills
-        </Link>
-        <a 
-         href="https://github.com/haddow64/CV/raw/main/Graeme_Haddow_-_Senior_Software_Engineer.pdf"
-         target="_blank" rel="noopener noreferrer"
-         className="home-btn">
-           Get my CV
-        </a>
+        <h1 className="hero-intro">
+          <span>Hi I'm Graeme.</span>
+          {" "}
+          <span className="hero-role">A Lead Software Engineer.</span>
+        </h1>
+        <div className="home-actions">
+          <a className="home-btn primary" href="#experience">
+            View experience
+          </a>
+          <a
+            href={cvUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="home-btn"
+          >
+            Download CV
+          </a>
+        </div>
       </motion.div>
 
       <motion.div
-        className="png"
-        animate={{ translateY: [-10, 0, -10, 0] }}
-        transition={{ yoyo: Infinity, duration: 12 }}
+        className="profile"
+        initial={reduceMotion ? false : { opacity: 0, scale: 0.96 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.6, delay: 0.15 }}
       >
-        <img src={man} alt="Developer" />
+        <img
+          src={profileImage}
+          srcSet={`${smallProfileImage} 256w, ${profileImage} 400w`}
+          sizes="(max-width: 480px) 248px, 260px"
+          width="400"
+          height="400"
+          alt="Graeme Haddow"
+          fetchPriority="high"
+          loading="eager"
+        />
       </motion.div>
     </section>
   );

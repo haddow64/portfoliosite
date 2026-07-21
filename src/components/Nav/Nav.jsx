@@ -1,45 +1,88 @@
-import React from "react";
-
-// Animation
-import { motion } from "framer-motion";
-import { animateScroll as scroll } from "react-scroll";
-
-// Styles
+import { useEffect, useState } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faBars,
+  faMoon,
+  faSun,
+  faXmark,
+} from "@fortawesome/free-solid-svg-icons";
 import "./nav.css";
 
-// Components
-import MenuIcon from "components/Menu/MenuIcon/MenuIcon";
+const navItems = [
+  ["About", "#about"],
+  ["Skills", "#skills"],
+  ["Impact", "#impact"],
+  ["Experience", "#experience"],
+  ["Education", "#education"],
+  ["Connect", "#connect"],
+];
 
-const Nav = ({ menuOpen, setMenuOpen }) => {
-  const handleClick = () => {
-    setMenuOpen(!menuOpen);
-  };
+const Nav = ({ theme, onToggleTheme }) => {
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  useEffect(() => {
+    if (!menuOpen) {
+      return undefined;
+    }
+
+    const closeOnEscape = (event) => {
+      if (event.key === "Escape") {
+        setMenuOpen(false);
+      }
+    };
+
+    window.addEventListener("keydown", closeOnEscape);
+    return () => window.removeEventListener("keydown", closeOnEscape);
+  }, [menuOpen]);
 
   return (
-    <div className={"nav-wrapper " + (menuOpen && "menuActive")}>
-      <motion.div
-        id="navbar"
-        className={"nav-container"}
-        initial={{
-          opacity: 0,
-        }}
-        animate={{
-          opacity: 1,
-        }}
-        transition={{
-          duration: 1.5,
-        }}
-      >
-        <span
-          className={"logo " + (menuOpen && "menuActive")}
-          onClick={() => scroll.scrollToTop()}
-        >
+    <header className="nav-wrapper">
+      <nav id="navbar" className="nav-container" aria-label="Primary navigation">
+        <a className="logo" href="#home" onClick={() => setMenuOpen(false)}>
           Graeme Haddow
-        </span>
+        </a>
 
-        <MenuIcon handleClick={handleClick} menuOpen={menuOpen} />
-      </motion.div>
-    </div>
+        <div
+          id="primary-navigation-links"
+          className={`nav-links ${menuOpen ? "active" : ""}`}
+        >
+          {navItems.map(([label, href]) => (
+            <a key={href} href={href} onClick={() => setMenuOpen(false)}>
+              {label}
+            </a>
+          ))}
+        </div>
+
+        <div className="nav-actions">
+          <button
+            className="icon-button"
+            type="button"
+            onClick={onToggleTheme}
+            aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} mode`}
+            title={`Switch to ${theme === "dark" ? "light" : "dark"} mode`}
+          >
+            <FontAwesomeIcon
+              icon={theme === "dark" ? faSun : faMoon}
+              aria-hidden="true"
+            />
+          </button>
+          <button
+            className="menu-button"
+            type="button"
+            onClick={() => setMenuOpen((open) => !open)}
+            aria-expanded={menuOpen}
+            aria-controls="primary-navigation-links"
+            aria-label={`${menuOpen ? "Close" : "Open"} navigation`}
+            title={`${menuOpen ? "Close" : "Open"} navigation`}
+          >
+            <FontAwesomeIcon
+              icon={menuOpen ? faXmark : faBars}
+              aria-hidden="true"
+            />
+          </button>
+        </div>
+      </nav>
+    </header>
   );
 };
 

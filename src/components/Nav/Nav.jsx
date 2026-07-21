@@ -6,17 +6,9 @@ import {
   faSun,
   faXmark,
 } from "@fortawesome/free-solid-svg-icons";
+import { navigationItems } from "data/navigation";
 import { Theme } from "../../constants/theme";
 import "./nav.css";
-
-const navItems = [
-  ["About", "#about"],
-  ["Skills", "#skills"],
-  ["Impact", "#impact"],
-  ["Experience", "#experience"],
-  ["Education", "#education"],
-  ["Connect", "#connect"],
-];
 
 const Nav = ({ theme, onToggleTheme }) => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -47,7 +39,7 @@ const Nav = ({ theme, onToggleTheme }) => {
           id="primary-navigation-links"
           className={`nav-links ${menuOpen ? "active" : ""}`}
         >
-          {navItems.map(([label, href]) => (
+          {navigationItems.map(({ label, href }) => (
             <a key={href} href={href} onClick={() => setMenuOpen(false)}>
               {label}
             </a>

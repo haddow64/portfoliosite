@@ -7,10 +7,10 @@
 }
 
 .heading {
-  margin-top: 3rem;
-  color: black;
-  font-weight: 500;
+  color: var(--text-color);
+  font-weight: 900;
   font-size: 2rem;
+  margin-bottom: 0.25rem;
   text-align: center;
 }
 
@@ -19,12 +19,12 @@
   margin: 0 auto;
   height: 5px;
   background: var(--primary-color);
-  width: 30px;
+  width: 90px;
   border-radius: 20px;
 }
 
 @media screen and (min-width: 600px) {
   .heading {
-    font-size: 3rem;
+    font-size: 2.6rem;
   }
 }

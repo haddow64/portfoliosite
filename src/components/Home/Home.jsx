@@ -1,5 +1,5 @@
 import { motion, useReducedMotion } from "framer-motion";
-import { cvUrl } from "data/links";
+import { cvUrl } from "@data/links";
 import "./home.css";
 
 const profileImage = `${import.meta.env.BASE_URL}profile-400.webp`;

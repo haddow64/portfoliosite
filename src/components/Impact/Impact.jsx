@@ -1,5 +1,5 @@
-import { Heading } from "components/Heading/Heading";
-import { impactStories } from "data/impactStories";
+import { Heading } from "@components/Heading/Heading";
+import { impactStories } from "@data/impactStories";
 
 const Impact = () => {
   return (

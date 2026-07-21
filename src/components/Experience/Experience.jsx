@@ -1,6 +1,6 @@
-import { Heading } from "components/Heading/Heading";
-import { experience } from "data/experience";
-import { cvUrl } from "data/links";
+import { Heading } from "@components/Heading/Heading";
+import { experience } from "@data/experience";
+import { cvUrl } from "@data/links";
 
 const Experience = () => {
   return (

@@ -1,7 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import { navigationItems } from "data/navigation";
-import App from "./App";
+import { navigationItems } from "@data/navigation";
+import App from "@/App";
 
 describe("App", () => {
   beforeEach(() => {

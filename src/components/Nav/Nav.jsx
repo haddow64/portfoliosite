@@ -6,8 +6,8 @@ import {
   faSun,
   faXmark,
 } from "@fortawesome/free-solid-svg-icons";
-import { navigationItems } from "data/navigation";
-import { Theme } from "../../constants/theme";
+import { navigationItems } from "@data/navigation";
+import { Theme } from "@/constants/theme";
 import "./nav.css";
 
 const Nav = ({ theme, onToggleTheme }) => {

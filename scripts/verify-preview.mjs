@@ -16,9 +16,9 @@ const assert = (condition, message) => {
 
 const assertCenteredRows = async (page, containerSelector, itemSelector, viewportName) => {
   const rows = await page.evaluate(
-    ({ containerSelector, itemSelector }) => {
-      const container = document.querySelector(containerSelector);
-      const items = Array.from(document.querySelectorAll(itemSelector));
+    ({ containerSelector: containerQuery, itemSelector: itemQuery }) => {
+      const container = document.querySelector(containerQuery);
+      const items = Array.from(document.querySelectorAll(itemQuery));
       if (!container || items.length === 0) {
         return [];
       }

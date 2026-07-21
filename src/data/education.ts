@@ -1,3 +1,5 @@
+import type { EducationItem } from "@/types/portfolio";
+
 export const education = [
   {
     title: "AWS - Solutions Architect",
@@ -11,4 +13,4 @@ export const education = [
     description:
       "Studied C++, DirectX graphics programming, CUDA and GPU computing, operating-system development, network programming, agile development and mathematics.",
   },
-];
+] as const satisfies readonly EducationItem[];

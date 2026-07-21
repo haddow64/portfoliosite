@@ -4,15 +4,24 @@ import { navigationItems } from "@data/navigation";
 import App from "@/App";
 
 describe("App", () => {
+  const mockMatchMedia = (matches = false) =>
+    vi.fn().mockImplementation(
+      (query: string): MediaQueryList => ({
+        matches,
+        media: query,
+        onchange: null,
+        addListener: vi.fn(),
+        removeListener: vi.fn(),
+        addEventListener: vi.fn(),
+        removeEventListener: vi.fn(),
+        dispatchEvent: vi.fn(),
+      })
+    );
+
   beforeEach(() => {
     window.localStorage.clear();
     delete document.documentElement.dataset.theme;
-    window.matchMedia = vi.fn().mockImplementation((query) => ({
-      matches: false,
-      media: query,
-      addEventListener: vi.fn(),
-      removeEventListener: vi.fn(),
-    }));
+    window.matchMedia = mockMatchMedia();
   });
 
   it("renders the core portfolio sections", () => {
@@ -49,7 +58,7 @@ describe("App", () => {
       "high"
     );
     for (const { label, href } of navigationItems) {
-      expect(screen.getByRole("link", { name: label, exact: true })).toHaveAttribute(
+      expect(screen.getByRole("link", { name: label })).toHaveAttribute(
         "href",
         href
       );

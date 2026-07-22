@@ -1,6 +1,7 @@
 import { education } from "@data/education";
 import { experience } from "@data/experience";
 import { impactStories } from "@data/impactStories";
+import { portfolioLinks } from "@data/links";
 import { navigationItems } from "@data/navigation";
 import { skills } from "@data/skills";
 
@@ -9,6 +10,15 @@ const expectUnique = (values: readonly string[]) => {
 };
 
 describe("portfolio data", () => {
+  it("defines the canonical portfolio links", () => {
+    expect(portfolioLinks).toEqual({
+      cv: "https://github.com/haddow64/CV/raw/main/Graeme_Haddow_-_Senior_Software_Engineer_green.pdf",
+      github: "https://github.com/haddow64",
+      linkedin: "https://www.linkedin.com/in/ghaddow64/",
+      email: "mailto:graeme@haddow64.com",
+    });
+  });
+
   it("defines unique navigation labels and section targets", () => {
     expectUnique(navigationItems.map(({ label }) => label));
     expectUnique(navigationItems.map(({ href }) => href));

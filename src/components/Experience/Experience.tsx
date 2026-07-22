@@ -1,6 +1,6 @@
 import { Heading } from "@components/Heading/Heading";
 import { experience } from "@data/experience";
-import { cvUrl } from "@data/links";
+import { portfolioLinks } from "@data/links";
 
 const Experience = () => {
   return (
@@ -8,7 +8,11 @@ const Experience = () => {
       <Heading text="Experience" />
       <p className="section-subtitle">
         For a full list of my experience,{" "}
-        <a href={cvUrl} target="_blank" rel="noopener noreferrer">
+        <a
+          href={portfolioLinks.cv}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           download my CV
         </a>
         .

@@ -3,6 +3,7 @@ import { faGithub } from "@fortawesome/free-brands-svg-icons";
 import { faLinkedin } from "@fortawesome/free-brands-svg-icons";
 import { faEnvelope } from "@fortawesome/free-regular-svg-icons";
 import { Heading } from "@components/Heading/Heading";
+import { portfolioLinks } from "@data/links";
 import "./connect.css";
 
 const Connect = () => {
@@ -14,7 +15,7 @@ const Connect = () => {
       </div>
       <div className="grid-flow">
         <a
-          href="https://github.com/haddow64"
+          href={portfolioLinks.github}
           target="_blank"
           rel="noopener noreferrer"
           aria-label="GitHub"
@@ -28,7 +29,7 @@ const Connect = () => {
           <span>GitHub</span>
         </a>
         <a
-          href="https://www.linkedin.com/in/ghaddow64/"
+          href={portfolioLinks.linkedin}
           target="_blank"
           rel="noopener noreferrer"
           aria-label="LinkedIn"
@@ -41,7 +42,7 @@ const Connect = () => {
           />
           <span>LinkedIn</span>
         </a>
-        <a href="mailto:graeme@haddow64.com" aria-label="Email" title="Email">
+        <a href={portfolioLinks.email} aria-label="Email" title="Email">
           <FontAwesomeIcon
             icon={faEnvelope}
             className="grid-item"

@@ -43,8 +43,10 @@ test(
     await openButton.click();
     const closeButton = page.getByRole("button", { name: "Close navigation" });
     await expect(closeButton).toHaveAttribute("aria-expanded", "true");
+    await expect(page.getByRole("link", { name: "About" })).toBeFocused();
     await page.keyboard.press("Escape");
     await expect(openButton).toHaveAttribute("aria-expanded", "false");
+    await expect(openButton).toBeFocused();
 
     await openButton.click();
     await page
@@ -52,6 +54,7 @@ test(
       .getByRole("link", { name: "Experience" })
       .click();
     await expect(openButton).toHaveAttribute("aria-expanded", "false");
+    await expect(openButton).toBeFocused();
     await expect(page.locator("#experience")).toBeInViewport();
   }
 );

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faBars,
@@ -18,14 +18,27 @@ interface NavProps {
 
 const Nav = ({ theme, onToggleTheme }: NavProps) => {
   const [menuOpen, setMenuOpen] = useState(false);
+  const firstNavigationLink = useRef<HTMLAnchorElement>(null);
+  const menuButton = useRef<HTMLButtonElement>(null);
+  const restoreMenuButtonFocus = useRef(false);
 
   useEffect(() => {
     if (!menuOpen) {
+      if (restoreMenuButtonFocus.current) {
+        const focusFrame = window.requestAnimationFrame(() => {
+          menuButton.current?.focus();
+          restoreMenuButtonFocus.current = false;
+        });
+        return () => window.cancelAnimationFrame(focusFrame);
+      }
       return undefined;
     }
 
+    firstNavigationLink.current?.focus();
+
     const closeOnEscape = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
+        restoreMenuButtonFocus.current = true;
         setMenuOpen(false);
       }
     };
@@ -34,10 +47,17 @@ const Nav = ({ theme, onToggleTheme }: NavProps) => {
     return () => window.removeEventListener("keydown", closeOnEscape);
   }, [menuOpen]);
 
+  const closeMenu = () => {
+    if (menuOpen) {
+      restoreMenuButtonFocus.current = true;
+    }
+    setMenuOpen(false);
+  };
+
   return (
     <header className="nav-wrapper">
       <nav id="navbar" className="nav-container" aria-label="Primary navigation">
-        <a className="logo" href="#home" onClick={() => setMenuOpen(false)}>
+        <a className="logo" href="#home" onClick={closeMenu}>
           Graeme Haddow
         </a>
 
@@ -45,8 +65,13 @@ const Nav = ({ theme, onToggleTheme }: NavProps) => {
           id="primary-navigation-links"
           className={`nav-links ${menuOpen ? "active" : ""}`}
         >
-          {navigationItems.map(({ label, href }) => (
-            <a key={href} href={href} onClick={() => setMenuOpen(false)}>
+          {navigationItems.map(({ label, href }, index) => (
+            <a
+              key={href}
+              href={href}
+              onClick={closeMenu}
+              ref={index === 0 ? firstNavigationLink : undefined}
+            >
               {label}
             </a>
           ))}
@@ -66,6 +91,7 @@ const Nav = ({ theme, onToggleTheme }: NavProps) => {
             />
           </button>
           <button
+            ref={menuButton}
             className="menu-button"
             type="button"
             onClick={() => setMenuOpen((open) => !open)}

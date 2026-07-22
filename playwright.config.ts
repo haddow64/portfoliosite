@@ -1,6 +1,6 @@
 import { defineConfig, devices } from "@playwright/test";
 
-const localUrl = "http://127.0.0.1:4176/portfoliosite/";
+const localUrl = "http://127.0.0.1:4176/";
 
 export default defineConfig({
   testDir: "./tests",

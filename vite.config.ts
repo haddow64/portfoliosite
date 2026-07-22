@@ -3,7 +3,7 @@ import { defineConfig } from "vitest/config";
 import react from "@vitejs/plugin-react";
 
 export default defineConfig({
-  base: "/portfoliosite/",
+  base: "./",
   plugins: [react()],
   resolve: {
     alias: [
@@ -28,7 +28,7 @@ export default defineConfig({
     environment: "jsdom",
     environmentOptions: {
       jsdom: {
-        url: "http://localhost/portfoliosite/",
+        url: "http://localhost/",
       },
     },
     setupFiles: "./src/setupTests.ts",

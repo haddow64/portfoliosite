@@ -13,7 +13,9 @@ npm ci
 npm run dev
 ```
 
-The Vite development server runs the site under the `/portfoliosite/` base path.
+The Vite development server runs the site from its root URL. Production assets
+use relative paths so the same build works on the custom domain and the default
+GitHub Pages project URL.
 
 ## Verification
 

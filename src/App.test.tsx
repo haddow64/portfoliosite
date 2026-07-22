@@ -1,4 +1,4 @@
-import { render, screen } from "@testing-library/react";
+import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { portfolioLinks } from "@data/links";
 import { navigationItems } from "@data/navigation";
@@ -93,6 +93,7 @@ describe("App", () => {
     expect(
       screen.getByRole("button", { name: "Close navigation" })
     ).toHaveAttribute("aria-expanded", "true");
+    expect(screen.getByRole("link", { name: "About" })).toHaveFocus();
 
     await user.keyboard("{ArrowDown}");
     expect(
@@ -103,5 +104,13 @@ describe("App", () => {
     expect(
       screen.getByRole("button", { name: "Open navigation" })
     ).toHaveAttribute("aria-expanded", "false");
+    await waitFor(() =>
+      expect(screen.getByRole("button", { name: "Open navigation" })).toHaveFocus()
+    );
+
+    await user.click(openButton);
+    await user.click(screen.getByRole("link", { name: "Experience" }));
+    expect(openButton).toHaveAttribute("aria-expanded", "false");
+    await waitFor(() => expect(openButton).toHaveFocus());
   });
 });

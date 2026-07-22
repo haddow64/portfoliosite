@@ -93,6 +93,11 @@ describe("App", () => {
       screen.getByRole("button", { name: "Close navigation" })
     ).toHaveAttribute("aria-expanded", "true");
 
+    await user.keyboard("{ArrowDown}");
+    expect(
+      screen.getByRole("button", { name: "Close navigation" })
+    ).toHaveAttribute("aria-expanded", "true");
+
     await user.keyboard("{Escape}");
     expect(
       screen.getByRole("button", { name: "Open navigation" })

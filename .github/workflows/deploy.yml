@@ -35,25 +35,16 @@ jobs:
         run: npm run lint
 
       - name: Run unit tests
-        run: npm test
+        run: npm run test:coverage
 
       - name: Build
         run: npm run build
 
+      - name: Install Playwright browser
+        run: npx playwright install --with-deps chromium
+
       - name: Run browser integration tests
-        shell: bash
-        env:
-          CHROME_PATH: /usr/bin/google-chrome
-        run: |
-          npm run preview &
-          for attempt in {1..30}; do
-            if curl --silent --fail http://127.0.0.1:4174/portfoliosite/ > /dev/null; then
-              break
-            fi
-            sleep 1
-          done
-          curl --silent --fail http://127.0.0.1:4174/portfoliosite/ > /dev/null
-          npm run test:integration
+        run: npm run test:browser
 
       - name: Configure GitHub Pages
         uses: actions/configure-pages@v6

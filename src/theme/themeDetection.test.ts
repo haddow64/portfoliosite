@@ -37,4 +37,14 @@ describe("getInitialTheme", () => {
       ).toBe(expected);
     }
   );
+
+  it("ignores an invalid document theme", () => {
+    expect(
+      getInitialTheme({
+        savedTheme: null,
+        documentTheme: "unsupported-theme",
+        prefersDarkMode: true,
+      })
+    ).toBe(Theme.DARK);
+  });
 });

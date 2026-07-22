@@ -29,7 +29,9 @@
     "test:coverage": "vitest run --coverage",
     "test:watch": "vitest",
     "test:browser": "playwright test",
-    "test:integration": "npm run build && playwright test"
+    "test:browser:ci": "playwright test --grep-invert @external",
+    "test:integration": "npm run build && playwright test",
+    "test:integration:ci": "npm run build && npm run test:browser:ci"
   },
   "devDependencies": {
     "@axe-core/playwright": "^4.12.1",

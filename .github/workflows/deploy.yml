@@ -44,7 +44,7 @@ jobs:
         run: npx playwright install --with-deps chromium
 
       - name: Run browser integration tests
-        run: npm run test:browser
+        run: npm run test:browser:ci
 
       - name: Configure GitHub Pages
         uses: actions/configure-pages@v6

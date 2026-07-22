@@ -20,13 +20,15 @@ The Vite development server runs the site under the `/portfoliosite/` base path.
 ```powershell
 npm run lint
 npm test
+npm run test:coverage
 npm run typecheck
 npm run build
-npm run preview
 npm run test:integration
 ```
 
-The integration check expects the preview at `http://127.0.0.1:4174/portfoliosite/` by default. Set `PREVIEW_URL` to use a different address.
+The integration command builds the site, starts an isolated preview and runs the
+Playwright browser suite in managed desktop and mobile Chromium projects. Set
+`PREVIEW_URL` to run the same browser checks against an existing deployment.
 
 ## Deployment
 

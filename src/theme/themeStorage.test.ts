@@ -21,6 +21,15 @@ describe("themeStorage", () => {
     expect(getSavedTheme(() => storage)).toBeNull();
   });
 
+  it("returns null when no theme has been saved", () => {
+    const storage = {
+      getItem: vi.fn(() => null),
+      setItem: vi.fn(),
+    };
+
+    expect(getSavedTheme(() => storage)).toBeNull();
+  });
+
   it("handles unavailable storage", () => {
     const unavailableStorage = () => {
       throw new Error("Storage unavailable");
@@ -41,5 +50,27 @@ describe("themeStorage", () => {
       THEME_STORAGE_KEY,
       Theme.DARK
     );
+  });
+
+  it("handles storage read failures", () => {
+    const storage = {
+      getItem: vi.fn(() => {
+        throw new Error("Read failed");
+      }),
+      setItem: vi.fn(),
+    };
+
+    expect(getSavedTheme(() => storage)).toBeNull();
+  });
+
+  it("handles storage write failures", () => {
+    const storage = {
+      getItem: vi.fn(),
+      setItem: vi.fn(() => {
+        throw new Error("Write failed");
+      }),
+    };
+
+    expect(saveTheme(Theme.LIGHT, () => storage)).toBe(false);
   });
 });

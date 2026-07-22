@@ -50,3 +50,36 @@ test("mobile layout supports text enlarged to 200 percent", async ({ page, isMob
   await expect(page.getByRole("heading", { level: 1 })).toBeVisible();
   await expectNoHorizontalOverflow(page);
 });
+
+test("navigation remains compact below the desktop breakpoint", async ({ page }) => {
+  await page.setViewportSize({ width: 780, height: 900 });
+  await openPortfolio(page);
+
+  await expect(page.getByRole("button", { name: "Open navigation" })).toBeVisible();
+  await expect(
+    page.getByRole("navigation", { name: "Primary navigation" }).getByRole("link", {
+      name: "About",
+    })
+  ).toBeHidden();
+  await expectNoHorizontalOverflow(page);
+});
+
+test("navigation uses the desktop layout at the breakpoint without wrapping", async ({
+  page,
+}) => {
+  await page.setViewportSize({ width: 800, height: 900 });
+  await openPortfolio(page);
+
+  await expect(page.getByRole("button", { name: "Open navigation" })).toBeHidden();
+  await expect(
+    page.getByRole("navigation", { name: "Primary navigation" }).getByRole("link", {
+      name: "About",
+    })
+  ).toBeVisible();
+
+  const navHeight = await page.locator(".nav-wrapper").evaluate((element) =>
+    element.getBoundingClientRect().height
+  );
+  expect(navHeight).toBeLessThanOrEqual(80);
+  await expectNoHorizontalOverflow(page);
+});

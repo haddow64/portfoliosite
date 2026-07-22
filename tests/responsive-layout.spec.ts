@@ -77,9 +77,9 @@ test("navigation uses the desktop layout at the breakpoint without wrapping", as
     })
   ).toBeVisible();
 
-  const navHeight = await page.locator(".nav-wrapper").evaluate((element) =>
-    element.getBoundingClientRect().height
+  const linkRows = await page.locator(".nav-links a").evaluateAll((links) =>
+    links.map((link) => Math.round(link.getBoundingClientRect().top))
   );
-  expect(navHeight).toBeLessThanOrEqual(80);
+  expect(Array.from(new Set(linkRows))).toHaveLength(1);
   await expectNoHorizontalOverflow(page);
 });

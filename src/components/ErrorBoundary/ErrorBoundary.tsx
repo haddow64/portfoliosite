@@ -21,6 +21,7 @@ export class ErrorBoundary extends Component<
   }
 
   componentDidCatch(error: Error, errorInfo: ErrorInfo) {
+    // For a real application I'd log this somewhere useful.
     console.error("Unhandled rendering error", error, errorInfo);
   }
 

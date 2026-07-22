@@ -1,3 +1,4 @@
+import { portfolioLinks } from "../src/data/links";
 import { expect, openPortfolio, test } from "./support/portfolioTest";
 
 test("all images load successfully", async ({ page }) => {
@@ -32,6 +33,6 @@ test("the email contact uses the expected address", async ({ page }) => {
 
   await expect(page.getByRole("link", { name: "Email" })).toHaveAttribute(
     "href",
-    "mailto:graeme@haddow64.com"
+    portfolioLinks.email
   );
 });

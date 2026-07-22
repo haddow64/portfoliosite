@@ -1,5 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+import { portfolioLinks } from "@data/links";
 import { navigationItems } from "@data/navigation";
 import App from "@/App";
 
@@ -46,13 +47,13 @@ describe("App", () => {
     ).toHaveAttribute("href", "#experience");
     expect(
       screen.getByRole("link", { name: /download cv/i })
-    ).toHaveAttribute("href", expect.stringContaining("_green.pdf"));
+    ).toHaveAttribute("href", portfolioLinks.cv);
     expect(
       screen.getByRole("link", { name: /download my cv/i })
-    ).toHaveAttribute("href", expect.stringContaining("_green.pdf"));
+    ).toHaveAttribute("href", portfolioLinks.cv);
     expect(
       screen.getByRole("link", { name: /linkedin/i })
-    ).toHaveAttribute("href", "https://www.linkedin.com/in/ghaddow64/");
+    ).toHaveAttribute("href", portfolioLinks.linkedin);
     expect(screen.getByRole("img", { name: "Graeme Haddow" })).toHaveAttribute(
       "fetchpriority",
       "high"

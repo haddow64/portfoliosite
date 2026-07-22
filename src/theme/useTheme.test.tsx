@@ -1,6 +1,6 @@
 import { act, renderHook } from "@testing-library/react";
 import { Theme, THEME_STORAGE_KEY } from "@/constants/theme";
-import { useTheme } from "@/hooks/useTheme";
+import { useTheme } from "@/theme/useTheme";
 
 describe("useTheme", () => {
   const mockMatchMedia = (matches = false) =>

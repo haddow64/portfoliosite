@@ -6,7 +6,7 @@ import Impact from "@components/Impact/Impact";
 import Experience from "@components/Experience/Experience";
 import Education from "@components/Education/Education";
 import Connect from "@components/Connect/Connect";
-import { useTheme } from "@/hooks/useTheme";
+import { useTheme } from "@/theme/useTheme";
 
 function App() {
   const { theme, toggleTheme } = useTheme();

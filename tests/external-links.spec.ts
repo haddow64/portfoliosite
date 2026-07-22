@@ -17,7 +17,7 @@ const openExternalUrl = async (context: BrowserContext, url: string) => {
   }
 };
 
-test("the CV download points to an available file", async ({ page }) => {
+test("the CV download points to the expected file", async ({ page }) => {
   await openPortfolio(page);
 
   const cvLinks = page.getByRole("link", { name: /download (my )?cv/i });
@@ -25,7 +25,10 @@ test("the CV download points to an available file", async ({ page }) => {
   for (const cvLink of await cvLinks.all()) {
     await expect(cvLink).toHaveAttribute("href", portfolioLinks.cv);
   }
+});
 
+test("the CV download is available @external", async ({ page }) => {
+  await openPortfolio(page);
   const downloadPromise = page.waitForEvent("download");
   await page.getByRole("link", { name: "Download CV", exact: true }).click();
   const download = await downloadPromise;
@@ -35,18 +38,17 @@ test("the CV download points to an available file", async ({ page }) => {
   expect(await download.path()).not.toBeNull();
 });
 
-test("the GitHub link points to an available profile", async ({ page, context }) => {
+test("the GitHub link uses the expected profile URL", async ({ page }) => {
   await openPortfolio(page);
 
-  const link = page.getByRole("link", { name: "GitHub" });
-  await expect(link).toHaveAttribute("href", portfolioLinks.github);
+  await expect(page.getByRole("link", { name: "GitHub" })).toHaveAttribute(
+    "href",
+    portfolioLinks.github
+  );
+});
 
-  const href = await link.getAttribute("href");
-  if (!href) {
-    throw new Error("GitHub link does not have an href");
-  }
-
-  const response = await openExternalUrl(context, href);
+test("the GitHub profile is available @external", async ({ context }) => {
+  const response = await openExternalUrl(context, portfolioLinks.github);
   expect(response.status).toBe(200);
 });
 

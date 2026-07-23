@@ -66,6 +66,30 @@ describe("App", () => {
     }
   });
 
+  it("places Experience before Impact in the page and navigation", () => {
+    render(<App />);
+
+    const sectionHeadings = screen
+      .getAllByRole("heading", { level: 2 })
+      .map(({ textContent }) => textContent);
+    const navigationLabels = screen
+      .getByRole("navigation", { name: "Primary navigation" })
+      .querySelectorAll(".nav-links a");
+    const expectedOrder = [
+      "About",
+      "Skills",
+      "Experience",
+      "Impact",
+      "Education",
+      "Connect",
+    ];
+
+    expect(sectionHeadings).toEqual(expectedOrder);
+    expect(
+      Array.from(navigationLabels, ({ textContent }) => textContent)
+    ).toEqual(expectedOrder);
+  });
+
   it("persists the selected colour theme", async () => {
     const user = userEvent.setup();
     render(<App />);

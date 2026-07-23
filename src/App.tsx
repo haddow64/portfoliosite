@@ -21,8 +21,8 @@ function App() {
         <Home />
         <About />
         <Skills />
-        <Impact />
         <Experience />
+        <Impact />
         <Education />
         <Connect />
       </main>

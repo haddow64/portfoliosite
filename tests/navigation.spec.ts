@@ -8,6 +8,25 @@ test("the hero call to action opens Experience", async ({ page }) => {
   await expect(page.locator("#experience")).toBeInViewport();
 });
 
+test("Experience precedes Impact in the page and navigation", async ({ page }) => {
+  await openPortfolio(page);
+
+  const sectionIds = await page
+    .locator("main > section[id]")
+    .evaluateAll((sections) => sections.map(({ id }) => id));
+  const navigationTargets = await page
+    .getByRole("navigation", { name: "Primary navigation" })
+    .locator(".nav-links a")
+    .evaluateAll((links) => links.map((link) => link.getAttribute("href")));
+
+  expect(sectionIds.indexOf("experience")).toBeLessThan(
+    sectionIds.indexOf("impact")
+  );
+  expect(navigationTargets.indexOf("#experience")).toBeLessThan(
+    navigationTargets.indexOf("#impact")
+  );
+});
+
 test(
   "desktop navigation opens every portfolio section",
   async ({ page, isMobile }) => {

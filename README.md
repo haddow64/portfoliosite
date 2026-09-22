@@ -6,7 +6,7 @@ React portfolio hosted on GitHub Pages and served at [haddow64.com](https://hadd
 
 ## Local development
 
-Use Node.js 20.19 or newer.
+Use Node.js 22.12 or newer.
 
 ```powershell
 npm ci
